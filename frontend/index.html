@@ -11,15 +11,15 @@
 <body>
     <div class ="header">
         <!-- <img src="InvestWelllogo.png" alt="" height = "50px" width="100px" style="align-items: left;"> -->
-        <button id = "home" >Home </button>
-        <button id ="about">About</button>
+        <a href="index.html"><button id = "home" >Home </button></a>
+        <a href="index.html"><button id ="about">About</button></a>
         <button id ="register"> Register Now</button>
         <button id ="signin"> Sign in </button>
-        <button id="contact">Contact</button>
+        <button id="checkdetails" onclick="apicall()" type ="submit">Check Details</button>
 
     </div>
 
-        <form id = "register-form" name="first" style="display: block;" method ="POST">
+        <form id = "register-form" name="first" style="display: none;">
             <fieldset>
             <label for="name"> Name:</label>
             <input type = "text" name = "name" id ="name" required> 
@@ -30,27 +30,26 @@
             <br>
     
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
             <br><br>
     
             <label for ="contact"> Contact Number : </label>
-            <input type ="number" name ="contact" id ="contact" >
+            <input type ="tel" name ="contact" id ="contact" required >
             <br>
     
             <label for = "dob"> Date of Birth : </label>
-            <input type = "date" name ="dob" id ="dob" > 
+            <input type = "date" name ="dob" id ="dob" required > 
             <br>
             <br> 
     
             <label for ="password"> Password : </label>
-            <input type ="password" name ="password" id ="password" >
+            <input type ="password" name ="password" id ="password" required>
             <br>
     
             <div class="button">
-                <button type="submit" onclick="validation()" >Submit</button>
+                <button type="submit" onclick="apipost()" >Submit</button>
             </div>
 
-            <button type="submit" onclick="apicall()" >Fetch</button>
            
             <!-- <label for ="submit"> Submit : </label>
             <input type="button" id="submit" /> -->
@@ -58,7 +57,80 @@
         </form>
 
         
+    <div class="table-wrapper" id = "checktable" style="display: none;" >
+        <table class="fl-table" id ="data-table" >
+            
+            <!-- <thead>
+            <tr>
+                <th>User ID</th>
+                <th>NAME</th>
+                <th>USERNAME</th>
+                <th>EMAIL ID</th>
+                <th>DATE OF BIRTH</th>
+                <th>CONTACT NUMBER</th>
+            </tr>
+        </thead> -->
 
+            <tbody>
+            <tfoot>
+                <button type="submit" id = "update"onclick="">Update</button>
+                <button type="submit" id = "delete" onclick="">Delete</button>
+            </tfoot>
+            <tbody>
+        </table>
+    </div>
+    <form name = "dlt" id = "delete-form" style="display: none;">
+        <fieldset>
+            <br>
+            <br>
+        <label for="name"> Enter User ID to  Delete:</label>
+        <input type = "number" name = "userid" id ="userid" required> 
+        <br><br>
+
+        <button style = "align-items: center" type="submit" onclick="apidelete()">Confirm</button>
+        </fieldset>
+    </form>
+
+    <form name = "update" name ="update" id = "update-form" style="display: none;">
+        <fieldset>
+            <br>
+            <br>
+        <label for="name"> Enter User ID to  Update:</label>
+        <input type = "number" name = "userid" id ="userid" required> 
+        <br><br>
+
+        <label for="name"> Name:</label>
+        <input type = "text" name = "name" id ="name" required> 
+        <br>
+
+        <label for ="username"> Username : </label>
+        <input type = "text" name = "username" id = "username" required > 
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for ="contact"> Contact Number : </label>
+        <input type ="tel" name ="contact" id ="contact" required>
+        <br>
+
+        <label for = "dob"> Date of Birth : </label>
+        <input type = "date" name ="dob" id ="dob" required > 
+        <br>
+        <br> 
+
+        <label for ="password"> Password : </label>
+        <input type ="password" name ="password" id ="password" required >
+        <br>
+
+        <button style = "align-items: center" type="submit" onclick="apiupdate()">Confirm</button>
+        </fieldset>
+    </form>
+
+        
+
+        
         <form id = "signin-form" style="display: none;">
             <fieldset>
             <label for ="username"> Username : </label>
@@ -75,7 +147,7 @@
         </form>
 
 
-        <button onclick="apicall()"> test</button>
+        <!-- <button onclick="apicall()"> test</button> -->
 
 </body>
 <!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
@@ -84,27 +156,6 @@
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
-<script>
-    function apicall(){
-   $(document).ready(function() {
-   $.ajax({
-       url:'http://localhost:5000/user/fetch',
-       type:"GET",
-       success: function(result){
-           console.log(result);
-       },
-       error:function(error){
-           console.log(error);
-       }
-   })
-})
-}
 
-
-
-
-
-
-</script>
 
 </html>
