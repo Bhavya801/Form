@@ -71,12 +71,14 @@ function apicall(){
             </tr>
         </thead>` : "No data";
     
-           
+        
             var tabledata="";
+            tabledata += "<th>" +str+ "</th>" 
             for(let i=0;i<result.length;i++){
-                let ob=result[i];
 
-                tabledata+="<tr> <td>"+ ob.user_id + "</td><td>" + ob.name+"</td><td>" + ob.username + "</td><td>" + ob.email_id + "</td><td>" + ob.dob + "</td><td>" + ob.contact + "</td></tr>";
+                let ob=result[i];
+        
+                tabledata+= "<tr> <td>"+ ob.user_id + "</td><td>" + ob.name+"</td><td>" + ob.username + "</td><td>" + ob.email_id + "</td><td>" + ob.dob + "</td><td>" + ob.contact + "</td></tr>";
 
             }
             console.log(tabledata);

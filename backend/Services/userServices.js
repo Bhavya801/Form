@@ -2,13 +2,26 @@ const mysql2 = require('mysql2');
 const repos = require('../Repositories/userDb');
 
 // Query for fetching the data
-const fetchfunc = (cb)=> {
-    sql = `SELECT * FROM registerform_details`;
-    const result = repos.fetchfunc(sql,function(error,res){
-        // console.log(res);
-        // return result;
-        cb(null,res);
-    });
+// const fetchfunc = (cb)=> {
+//     sql = `SELECT * FROM registerform_details`;
+//     const result = repos.fetchfunc(sql,function(error,res){
+//         // console.log(res);
+//         return result;
+//         cb(null,res);
+//     });
+//     // return repos.fetchfunc(sql);
+// }
+
+const fetchfunc = ()=> {
+    return new Promise((resolve)=>{
+        sql = `SELECT * FROM registerform_details`;
+    const result = repos.fetchfunc(sql);
+    result.then((data)=>{
+        resolve(data);
+    })
+
+    })
+    
     // return repos.fetchfunc(sql);
 }
 

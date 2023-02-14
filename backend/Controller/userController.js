@@ -6,11 +6,12 @@ const showfunc = (req,res)=>{
 };
 
 const fetchfunc = (req,res) =>{
-    const result = services.fetchfunc(function(err,result){
-        return res.send(result);
+    console.log(req.headers);
+    const result = services.fetchfunc();
+
+    result.then((data)=>{
+        res.send(data);
     });
-    // return services.fetchfunc();
-    return result;
 }
 
 const insertfunc = (req,res) =>{

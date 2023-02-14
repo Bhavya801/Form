@@ -1,14 +1,30 @@
 const {connection} = require('../Connection/db');
 
 
-// TO FETCH DATA
-const fetchfunc=(sql,cb)=>{
-    const fetchfunc= connection.query(sql,function(error,results){
+// // TO FETCH DATA
+// const fetchfunc=(sql,cb)=>{
+//     const fetchfunc= connection.query(sql,function(error,results){
+//             if (error)
+//                 { return(console.log(error)); } 
+//             console.log(results);
+//             cb(null,results);
+//             return results;
+//             // res.send(results+"Fetch");
+//     })
+//     return fetchfunc;
+// }
+
+//FETCH DATA 
+const fetchfunc=async (sql)=>{
+    return new Promise(function (resolve){
+        connection.query(sql,function(error,results){
             if (error)
                 { return(console.log(error)); } 
-            console.log(results);
-            cb(null,results);
-            return results;
+                resolve(results);
+        
+    })
+    
+        
             // res.send(results+"Fetch");
     })
     return fetchfunc;
