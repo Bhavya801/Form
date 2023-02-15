@@ -15,7 +15,19 @@ const {connection} = require('../Connection/db');
 // }
 
 //FETCH DATA 
-const fetchfunc=async (sql)=>{
+// const fetchfunc=(sql)=>{
+//     return new Promise(function (resolve){
+//         connection.query(sql,function(error,results){
+//             if (error)
+//                 { return(console.log(error)); } 
+//                 resolve(results);
+        
+//     })
+//             // res.send(results+"Fetch");
+//     })
+// }
+
+const fetchfunc=async(sql)=>{
     return new Promise(function (resolve){
         connection.query(sql,function(error,results){
             if (error)
@@ -23,12 +35,11 @@ const fetchfunc=async (sql)=>{
                 resolve(results);
         
     })
-    
-        
             // res.send(results+"Fetch");
     })
-    return fetchfunc;
 }
+
+
 
 // TO INSERT DATA
 const insertfunc=(sql)=>{

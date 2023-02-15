@@ -98,6 +98,14 @@ function apicall(){
     document.getElementById("register-form").style.display = "none"; 
  }
 
+ function reset(){
+    document.forms.first.name.value = ""; 
+   document.forms.first.username.value = "";
+   document.forms.first.email.value ="";
+   document.forms.first.dob.value ="";
+   document.forms.first.contact.value="";
+   document.forms.first.password.value ="";
+   }
 function apipost(){
     let name=document.forms.first.name.value;
     let username=document.forms.first.username.value;
@@ -118,12 +126,14 @@ function apipost(){
         data: obj,
         success: function(data){
             console.log(data);
+            reset();
         },
         error:function(error){
             console.log(error);
         }
     })
 }
+
 
 function apidelete(){
     let user_id=document.forms.dlt.userid.value;

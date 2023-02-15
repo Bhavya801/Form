@@ -12,18 +12,32 @@ const repos = require('../Repositories/userDb');
 //     // return repos.fetchfunc(sql);
 // }
 
-const fetchfunc = ()=> {
-    return new Promise((resolve)=>{
-        sql = `SELECT * FROM registerform_details`;
-    const result = repos.fetchfunc(sql);
-    result.then((data)=>{
-        resolve(data);
-    })
+// const fetchfunc = ()=> {
+//     return new Promise((resolve)=>{
+//         sql = `SELECT * FROM registerform_details`;
+//     const result = repos.fetchfunc(sql);
+//     result.then((data)=>{
+//         resolve(data);
+//     })
 
-    })
+//     })
+    
+//     // return repos.fetchfunc(sql);
+// }
+
+const fetchfunc = async()=> {
+    sql = `SELECT * FROM registerform_details`;
+    const result = await(repos.fetchfunc(sql));
+   return new Promise ((resolve)=>{
+    resolve(result);
+   })
+
+}
     
     // return repos.fetchfunc(sql);
-}
+
+
+
 
 // Query for inserting the data
 const insertfunc = (userdata)=> {E:

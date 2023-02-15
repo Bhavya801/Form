@@ -5,13 +5,15 @@ const showfunc = (req,res)=>{
     res.sendFile(__dirname + '/frontend/index.html');
 };
 
-const fetchfunc = (req,res) =>{
-    console.log(req.headers);
-    const result = services.fetchfunc();
+const fetchfunc = async(req,res) =>{
+    // console.log(req.headers);
+    const result = await(services.fetchfunc());
+    res.send(result);
+    return result;
 
-    result.then((data)=>{
-        res.send(data);
-    });
+    // result.then((data)=>{
+    //     res.send(data);
+    // });
 }
 
 const insertfunc = (req,res) =>{
