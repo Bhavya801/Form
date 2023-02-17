@@ -40,7 +40,7 @@ const fetchfunc = async()=> {
 
 
 // Query for inserting the data
-const insertfunc = (userdata)=> {E:
+const insertfunc = (userdata)=> {
     
     sql =  `INSERT INTO registerform_details(name,username,email_id,contact,dob,pass) VALUES (
         "${userdata.name}",
@@ -80,13 +80,21 @@ const deletefunc = (userdata)=> {
     return repos.deletefunc(sql);
 }
 
+const loginfunc = async(userdata)=> {
+    sql = `SELECT * FROM registerform_details WHERE username = "${userdata.username}" and pass = "${userdata.password}"`;
+    const result = await (repos.loginfunc(sql));
+    return new Promise ((resolve)=>{
+    resolve(result);
+    })
+}
 
 
 module.exports={
     fetchfunc,
     insertfunc,
     updatefunc,
-    deletefunc,   
+    deletefunc,
+    loginfunc   
 }
 
 

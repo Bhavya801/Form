@@ -76,9 +76,26 @@ const deletefunc=(sql)=>{
     return deletefunc;
 }
 
+//check validation 
+const loginfunc= async(sql)=>{
+    //console.log("Repo")
+    return new Promise(function (resolve){
+        connection.query(sql,function(error,results){
+            if (error)
+                { return(console.log(error)); } 
+            //console.log("Repo",results);
+                resolve(results);
+        
+    })
+            // res.send(results+"Fetch");
+    })
+
+}
+
 module.exports={
     fetchfunc,
     insertfunc,
     updatefunc,
     deletefunc,
+    loginfunc
 }

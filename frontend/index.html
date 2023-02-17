@@ -43,7 +43,11 @@
             <br> 
     
             <label for ="password"> Password : </label>
-            <input type ="password" name ="password" id ="password" required>
+            <input type ="password" name ="password" id ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <br>
+
+            <label for ="password"> Confirm Password : </label>
+            <input type ="password" name ="confirmpassword" id ="confirmpassword" required>
             <br>
     
             <div class="button">
@@ -61,21 +65,21 @@
         <table class="fl-table" id ="data-table" >
             
              <thead>
-            <tr>
-                <th>User ID</th>
+            <!-- <tr>
+                 <th>User ID</th>
                 <th>NAME</th>
                 <th>USERNAME</th>
                 <th>EMAIL ID</th>
                 <th>DATE OF BIRTH</th>
                 <th>CONTACT NUMBER</th>
-            </tr>
+            </tr> -->
         </thead>
 
             <tbody>
-            <tfoot>
+            <!-- <tfoot>
                 <button type="submit" id = "update"onclick="">Update</button>
                 <button type="submit" id = "delete" onclick="">Delete</button>
-            </tfoot>
+            </tfoot> -->
             <tbody>
         </table>
     </div>
@@ -91,7 +95,7 @@
         </fieldset>
     </form>
 
-    <form name = "update" name ="update" id = "update-form" style="display: none;">
+    <form name = "update" name ="update" id = "update-form" style="display: none;" autocomplete="on">
         <fieldset>
             <br>
             <br>
@@ -133,18 +137,44 @@
         
         <form id = "signin-form" style="display: none;">
             <fieldset>
-            <label for ="username"> Username : </label>
-            <input type = "text" name = "username" id = "username" /> 
-            <br>
+                <label for ="username"> Username : </label>
+                <input type = "text" name = "username" id = "username1" required > 
+                <br>
     
     
-            <label for ="password"> Password : </label>
-            <input type ="password" name ="password" id ="password" />
-            <br>
-    
-            <div class="button"><button type="button" >Submit</button></div>
+                <label for ="password"> Password : </label>
+                <input type ="password" name ="password" id ="password1" required />
+                <br>
+        
+                <div class="button"><button type="button" onclick="apilogin()">Submit</button></div>
             </fieldset>
         </form>
+
+        <div class="table-wrapper"  id="loggedin" style="display: none;">
+         
+             <table class="fl-table" id ="login-table" >
+            
+                <thead>
+               <tr>
+                    <th>User ID</th>
+                   <th>NAME</th>
+                   <th>USERNAME</th>
+                   <th>EMAIL ID</th>
+                   <th>DATE OF BIRTH</th>
+                   <th>CONTACT NUMBER</th>
+               </tr> 
+           </thead>
+   
+               <tbody>
+               <tfoot>
+                   <button type="submit" id = "update"onclick="">Update</button>
+                   <button type="submit" id = "delete" onclick="">Delete</button>
+               </tfoot>
+               <tbody>
+           </table>
+
+        </div>
+
 
 
         <!-- <button onclick="apicall()"> test</button> -->
