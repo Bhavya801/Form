@@ -1,4 +1,5 @@
 const services = require('../Services/userServices');
+const validation = require('../Validation/validation')
 
 
 const showfunc = (req,res)=>{
@@ -11,9 +12,9 @@ const loginfunc = async(req,res)=>{
     console.log(result);
     console.log(userdata);
 
-     if(result.length==0){
-         res.send("Invalid Credentials");
-     }
+    if(result.length==0){
+            res.send("Invalid Credentials");
+    }
 
     else {
         logindata = {
@@ -26,7 +27,7 @@ const loginfunc = async(req,res)=>{
                     }
             res.send(logindata);
     } 
-   }
+    }
     // return services.loginfunc(userdata);
 
 

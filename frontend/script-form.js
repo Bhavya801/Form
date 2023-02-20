@@ -55,17 +55,17 @@ document.getElementById("delete").addEventListener('click', ()=>{
 
 function validation(){
     console.log("hello");
-    let password=document.forms.first.password.value;
-    let cpassword=document.forms.first.confirmpassword.value;
-    // alert(password); 
-    // if(password.length < 6 || password.length > 16){
-    //     alert("password length should be between 6 to 16");
+    // let password=document.forms.first.password.value;
+    // let cpassword=document.forms.first.confirmpassword.value;
+    // // alert(password); 
+    // // if(password.length < 6 || password.length > 16){
+    // //     alert("password length should be between 6 to 16");
+    // //     return false;
+    // // }
+    // if (password!=cpassword){
+    //     alert("Password doesn't match!!");
     //     return false;
     // }
-    if (password!=cpassword){
-        alert("Password doesn't match!!");
-        return false;
-    }
 
 
 }
@@ -121,8 +121,8 @@ function apicall(){
 
 
 function apipost(){
-    flag=false;
-    flag=validation();
+    flag=true;
+    // flag=validation();
     if(flag===true){
         let name=document.forms.first.name.value;
         let username=document.forms.first.username.value;
@@ -223,8 +223,7 @@ function apilogin(){
                 if (typeof(result)==="string"){
                     alert(result);
                 }
-                else
-                {
+                else{
                     
                     console.log(result);
                     document.getElementById("loggedin").style.display = "block";
@@ -259,6 +258,7 @@ function apilogin(){
                     output.innerHTML = logintabledata;
                 }
                 },
+            
     
         error: function(error){
             console.log(error); }
