@@ -125,7 +125,7 @@
         <br> 
 
         <label for ="password"> Password : </label>
-        <input type ="password" name ="password" id ="password" required >
+        <input type ="password" name ="password" id ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required >
         <br>
 
         <button style = "align-items: center" type="submit" onclick="apiupdate()">Confirm</button>

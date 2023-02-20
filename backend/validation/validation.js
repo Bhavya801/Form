@@ -4,7 +4,7 @@ const Joi = require('joi');
 const loginschema = Joi.object({
     username:Joi.string()
     .required(),
-    password:Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+    password:Joi.string().required()
 });
 
 const registerschema = Joi.object({
@@ -17,16 +17,16 @@ const registerschema = Joi.object({
     .required(),
 
     email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'],} })
         .required(),
 
     
     dob : Joi.date().required(),
 
-    contact : Joi.number().min(10).max(10).required(),
+    contact : Joi.number().min(10).required(),
 
     password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+        // .pattern(new RegExp('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')).required()
 
 })
 

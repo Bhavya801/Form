@@ -1,5 +1,7 @@
 const mysql2 = require('mysql2');
 const repos = require('../Repositories/userDb');
+const crypto=require("crypto-js")
+
 
 // Query for fetching the data
 // const fetchfunc = (cb)=> {
@@ -41,14 +43,14 @@ const fetchfunc = async()=> {
 
 // Query for inserting the data
 const insertfunc = (userdata)=> {
-    
+    var passencrypted = crypto.AES.encrypt(userdata.password, 'secret key 123').toString();
     sql =  `INSERT INTO registerform_details(name,username,email_id,contact,dob,pass) VALUES (
         "${userdata.name}",
         "${userdata.username}",
         "${userdata.email}",
         ${userdata.contact},
         "${userdata.dob}",
-        "${userdata.password}"
+        "${passencrypted}"
         )`;
     //   sql =  `INSERT INTO registerform_details(?,?,?,?,?,?) VALUES (
     //     "${userdata.name}",
@@ -81,7 +83,8 @@ const deletefunc = (userdata)=> {
 }
 
 const loginfunc = async(userdata)=> {
-    sql = `SELECT * FROM registerform_details WHERE username = "${userdata.username}" and pass = "${userdata.password}"`;
+    // var passencrypted = crypto.AES.encrypt(userdata.password, 'secret key 123').toString();
+    sql = `SELECT * FROM registerform_details WHERE username = "${userdata.username}"`;
     const result = await (repos.loginfunc(sql));
     return new Promise ((resolve)=>{
     resolve(result);
