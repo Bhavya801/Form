@@ -65,13 +65,14 @@ const insertfunc = (userdata)=> {
 
 // Query for update the data
 const updatefunc = (userdata)=> {
+    var passencrypted = crypto.AES.encrypt(userdata.password, 'secret key 123').toString();
     sql = `UPDATE registerform_details SET 
     name = "${userdata.name}",
     username = "${userdata.username}",
     email_id = "${userdata.email}",
     contact = ${userdata.contact},
     dob = "${userdata.dob}",
-    pass = "${userdata.password}"
+    pass = "${passencrypted}"
     WHERE user_id = ${userdata.user_id} `;
     return repos.updatefunc(sql);
 }

@@ -26,7 +26,8 @@ const registerschema = Joi.object({
     contact : Joi.number().min(10).required(),
 
     password: Joi.string()
-        // .pattern(new RegExp('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')).required()
+    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
+    .required()
 
 })
 
@@ -47,10 +48,14 @@ const updateschema = Joi.object({
     
     dob : Joi.date().required(),
 
-    contact : Joi.number().min(10).max(10).required(),
+    contact : Joi.number().required(),
 
     password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
+    .required()
+
+
+        // .pattern(new RegExp("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$")).required()
 
 })
 

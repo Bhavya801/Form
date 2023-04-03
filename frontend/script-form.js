@@ -2,6 +2,7 @@
 var userCounter=0;
 var data = [];
 var hash=new Map();
+var rows;
 
 
 document.getElementById("register").addEventListener('click', ()=>{
@@ -37,7 +38,7 @@ document.getElementById("update").addEventListener('click', ()=>{
     console.log("trigger");
     document.getElementById("update-form").style.display = "block";
     document.getElementById("delete-form").style.display = "none";
-    document.getElementById("logintable").style.display = "none";
+    document.getElementById("loggedin").style.display = "none";
     document.getElementById("checktable").style.display = "none";
     document.getElementById("signin-form").style.display = "none";
     document.getElementById("register-form").style.display = "none"; 
@@ -47,33 +48,29 @@ document.getElementById("delete").addEventListener('click', ()=>{
     console.log("trigger");
     document.getElementById("delete-form").style.display = "block";
     document.getElementById("update-form").style.display = "none";
-    document.getElementById("logintable").style.display = "none";
+    document.getElementById("loggedin").style.display = "none";
     document.getElementById("checktable").style.display = "none";
     document.getElementById("signin-form").style.display = "none";
     document.getElementById("register-form").style.display = "none"; 
 })
 
+document.getElementById("checkdetails").addEventListener('click',()=>{
+    document.getElementById("loggedin").style.display = "none";
+    document.getElementById("checktable").style.display = "block";
+    document.getElementById("update-form").style.display = "none";
+    document.getElementById("delete-form").style.display = "none";
+    document.getElementById("signin-form").style.display = "none";
+    document.getElementById("register-form").style.display = "none"; 
+})
 function validation(){
-    console.log("hello");
-    // let password=document.forms.first.password.value;
-    // let cpassword=document.forms.first.confirmpassword.value;
-    // // alert(password); 
-    // // if(password.length < 6 || password.length > 16){
-    // //     alert("password length should be between 6 to 16");
-    // //     return false;
-    // // }
-    // if (password!=cpassword){
-    //     alert("Password doesn't match!!");
-    //     return false;
-    // }
-
+   
 
 }
 function apicall(){
     let rows=[];
     $.ajax({
-        url:'http://localhost:5000/user/fetch',
-        type:"GET",
+        url:'http://localhost:3001/user/fetch',
+        type:"st",
         success: function(result){
             console.log(result);
             // return result;
@@ -121,23 +118,40 @@ function apicall(){
 
 
 function apipost(){
-    flag=true;
-    // flag=validation();
-    if(flag===true){
+    console.log("hello");
+    let password=document.forms.first.password.value;
+    let cpassword=document.forms.first.confirmpassword.value;
+    // alert(password); 
+    if(password.length < 6 || password.length > 30){
+        alert("password length should be between 6 to 30");
+        return false;
+    }
+    // var regpass = "^[a-zA-Z0-9]{6,30}$"; 
+
+    // if (regpass.test(password)){
+    //     alert("Incorrect format!")
+    //     return false;
+    // }
+    if (password!=cpassword){
+        alert("Password doesn't match!!");
+        return false;
+    }
+    
+    
         let name=document.forms.first.name.value;
         let username=document.forms.first.username.value;
         let email=document.forms.first.email.value;
         let dob=document.forms.first.dob.value;
         let contact=document.forms.first.contact.value;
-        let password=document.forms.first.password.value;
+        let pass=document.forms.first.password.value;
         
-        data.push({name,username,email,dob,contact,password});
+        data.push({name,username,email,dob,contact,pass});
         console.log(data);
         let dataDisplay = "";
         var obj=data[0];
 
         $.ajax({
-            url:'http://localhost:5000/user/insert',
+            url:'http://localhost:3001/user/insert',
             type:"POST",
             dataType:"json",
             data: obj,
@@ -149,10 +163,7 @@ function apipost(){
                 console.log(error);
             }
         })
-    }
-    // else{
-    //     alert("Enter details again!!")
-    // }
+    
 
 }
 
@@ -162,7 +173,7 @@ function apidelete(){
     var obj = { user_id }
 
     $.ajax({
-        url:'http://localhost:5000/user/delete',
+        url:'http://localhost:3001/user/delete',
         type:"POST",
         dataType:"json",
         data: obj,
@@ -177,33 +188,6 @@ function apidelete(){
 }
 
 
-function apiupdate(){
-    let user_id=document.forms.update.userid.value;
-    let name=document.forms.update.name.value;
-    let username=document.forms.update.username.value;
-    let email=document.forms.update.email.value;
-    let dob=document.forms.update.dob.value;
-    let contact=document.forms.update.contact.value;
-    let password=document.forms.update.password.value;
-    
-    data.push({user_id,name,username,email,dob,contact,password});
-    console.log(data);
-    let dataDisplay = "";
-    var obj=data[0];
-
-    $.ajax({
-        url:'http://localhost:5000/user/update',
-        type:"POST",
-        dataType:"json",
-        data: obj,
-        success: function(data){
-            console.log(data);
-        },
-        error:function(error){
-            console.log(error);
-        }
-    })
-}
 
 
 function apilogin(){
@@ -216,7 +200,7 @@ function apilogin(){
 
 
     $.ajax({
-        url:'http://localhost:5000/user/login',
+        url:'http://localhost:3001/user/login',
         type:"POST",
         data: data,
         success: function(result){
@@ -272,6 +256,55 @@ function apilogin(){
     document.getElementById("delete-form").style.display = "none";
     document.getElementById("signin-form").style.display = "none";
     document.getElementById("register-form").style.display = "none"; 
+}
+
+function autofill(){
+    document.getElementById("loggedin").style.display = "none";
+    document.getElementById("checktable").style.display = "none";
+    document.getElementById("update-form").style.display = "block";
+    document.getElementById("delete-form").style.display = "none";
+    document.getElementById("signin-form").style.display = "none";
+    document.getElementById("register-form").style.display = "none"; 
+
+    console.log(rows.user_name);
+
+    document.forms.update.userid.value=rows.user_id;
+    document.forms.update.name.value=rows.name;
+    document.forms.update.username.value=rows.user_name;
+    document.forms.update.email.value=rows.email_id;
+    document.forms.update.dob.value=rows.dob;
+    document.forms.update.contact.value=rows.contact;
+
+
+}
+function apiupdate(){
+
+    let user_id=document.forms.update.userid.value;
+    let name=document.forms.update.name.value;
+    let username=document.forms.update.username.value;
+    let email=document.forms.update.email.value;
+    let dob=document.forms.update.dob.value;
+    let contact=document.forms.update.contact.value;
+    let password=document.forms.update.password.value;
+    
+    data.push({user_id,name,username,email,dob,contact,password});
+    // console.log(data);
+   
+    let dataDisplay = "";
+    var obj=data[0];
+
+    $.ajax({
+        url:'http://localhost:3001/user/update',
+        type:"POST",
+        dataType:"json",
+        data: obj,
+        success: function(data){
+            console.log(data);
+        },
+        error:function(error){
+            console.log(error);
+        }
+    })
 }
 
 

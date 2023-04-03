@@ -40,7 +40,7 @@ const loginfunc = async(req,res)=>{
             logindata = {
                 user_id : result[0].user_id,
                 name: result[0].name,
-                username : result[0].username1,
+                user_name : result[0].username,
                 email_id : result[0].email_id,
                 dob : result[0].dob,
                 contact : result[0].contact

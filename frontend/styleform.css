@@ -2,8 +2,11 @@
     box-sizing: border-box;
 }
 body{
+    background-image: url('19366.jpg');
+    background-size: cover;
     font-family: Helvetica;
-    background: rgb(246, 248, 250);
+    backface-visibility:unset;
+    /* background: rgb(246, 248, 250); */
 }
 h2{
     text-align: center;

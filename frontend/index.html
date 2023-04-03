@@ -43,8 +43,13 @@
             <br> 
     
             <label for ="password"> Password : </label>
-            <input type ="password" name ="password" id ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <input type ="password" name ="password" id ="password" pattern="^[a-zA-Z0-9]{6,30}$" required>
             <br>
+
+            <!-- <label for ="password"> Password : </label>
+            <input type ="password" name ="password" id ="password" required >
+            <br> -->
+
 
             <label for ="password"> Confirm Password : </label>
             <input type ="password" name ="confirmpassword" id ="confirmpassword" required>
@@ -99,8 +104,8 @@
         <fieldset>
             <br>
             <br>
-        <label for="name"> Enter User ID to  Update:</label>
-        <input type = "number" name = "userid" id ="userid" required> 
+        <label for="name">User ID :</label>
+        <input type = "number" name = "userid" id ="userid" disabled> 
         <br><br>
 
         <label for="name"> Name:</label>
@@ -108,7 +113,7 @@
         <br>
 
         <label for ="username"> Username : </label>
-        <input type = "text" name = "username" id = "username" required > 
+        <input type = "text" name = "username" id = "username" disabled > 
         <br>
 
         <label for="email">Email:</label>
@@ -122,10 +127,10 @@
         <label for = "dob"> Date of Birth : </label>
         <input type = "date" name ="dob" id ="dob" required > 
         <br>
-        <br> 
+        <!-- <br> (?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,} -->
 
         <label for ="password"> Password : </label>
-        <input type ="password" name ="password" id ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required >
+        <input type ="password" name ="password" id ="password" pattern="^[a-zA-Z0-9]{6,30}$" required >
         <br>
 
         <button style = "align-items: center" type="submit" onclick="apiupdate()">Confirm</button>
@@ -167,7 +172,7 @@
    
                <tbody>
                <tfoot>
-                   <button type="submit" id = "update"onclick="">Update</button>
+                   <button type="submit" id = "update"onclick="autofill()">Update</button>
                    <button type="submit" id = "delete" onclick="">Delete</button>
                </tfoot>
                <tbody>
